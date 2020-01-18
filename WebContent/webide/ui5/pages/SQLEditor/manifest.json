@@ -1,0 +1,37 @@
+{
+	"sap.app": {
+		"id": "io.rtdi.hana.webide.ui",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"dataSources": {
+		}
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "io.rtdi.hana.webide.ui.pages.SQLEditor.View",
+			"type": "XML",
+			"async": true
+		},
+		"dependencies": {
+			"libs": {
+				"sap.m": {
+					
+				}
+			}
+		},
+		"config": {
+			"sample": {
+				"stretch": true,
+				"files": [
+					"Component.js",
+					"Controller.controller.js",
+					"View.view.xml",
+					"manifest.json"
+				]
+			}
+		},
+		"models": {
+		}
+	}
+}

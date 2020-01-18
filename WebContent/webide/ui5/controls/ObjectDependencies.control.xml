@@ -1,0 +1,6 @@
+<core:FragmentDefinition
+		xmlns:ide="io.rtdi.hana.webide.ui.controls"
+		xmlns:core="sap.ui.core"
+    >
+	<ide:AmChartContainer id="idchart" plugin="plugins/forceDirected.js" height="100%"/>
+</core:FragmentDefinition>
