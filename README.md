@@ -1,2 +1,2 @@
-# hanaappserver
-A foundation to build Hana based applications
+# Hana WebIDE
+A prototype to start a discussion how the Hana WebIDE should have been built.
