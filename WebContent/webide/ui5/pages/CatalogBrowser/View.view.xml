@@ -1,5 +1,5 @@
 <mvc:View height="100%" class="sapUiSizeCompact"
-	controllerName="io.rtdi.hana.webide.ui.Controller"
+	controllerName="io.rtdi.hana.webide.ui.pages.CatalogBrowser.Controller"
 	xmlns:mvc="sap.ui.core.mvc" 
 	xmlns="sap.m" 
 	xmlns:f="sap.f"
@@ -126,7 +126,7 @@
 						</Panel>
 					</l:SplitPane>
 					<l:SplitPane id="idDefinitionPane">
-						<Text text="Test" />
+						<Text text="" />
 					</l:SplitPane>
 				</l:PaneContainer>
 			</l:ResponsiveSplitter>

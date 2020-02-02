@@ -1,5 +1,5 @@
 <mvc:View height="100%" class="sapUiSizeCompact"
-	controllerName="io.rtdi.hana.webide.ui.ObjectDependencies.Controller"
+	controllerName="io.rtdi.hana.webide.ui.pages.ObjectDependencies.Controller"
 	xmlns:mvc="sap.ui.core.mvc" 
 	xmlns="sap.m" 
 	xmlns:f="sap.f"

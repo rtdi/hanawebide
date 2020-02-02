@@ -1,0 +1,9 @@
+<core:FragmentDefinition
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:core="sap.ui.core"
+		xmlns:ide="io.rtdi.hana.webide.ui.controls"
+    >
+
+	<ide:ObjectDependencies id="id-object-dependencies" height="100%"/>
+
+</core:FragmentDefinition>

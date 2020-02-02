@@ -1,10 +1,10 @@
 sap.ui.define([ "sap/ui/core/mvc/Controller",
 		"sap/ui/model/odata/v4/ODataModel",
-		"io/rtdi/hana/webide/ui/controls/TableDefinition",
-		"io/rtdi/hana/webide/ui/controls/ViewDefinition"], function(Controller, ODataModel, TableDefinition, ViewDefinition) {
+		"io/rtdi/hana/webide/ui/pages/CatalogBrowser/controls/TableViewer",
+		"io/rtdi/hana/webide/ui/pages/CatalogBrowser/controls/ViewViewer"], function(Controller, ODataModel, TableViewer, ViewViewer) {
 	"use strict";
 
-	return Controller.extend("io.rtdi.hana.webide.ui.Controller", {
+	return Controller.extend("io.rtdi.hana.webide.ui.pages.CatalogBrowser.Controller", {
 
 		onInit : function() {
 			var cOwner = this.getView().byId("idOwnerFilter");
@@ -41,20 +41,20 @@ sap.ui.define([ "sap/ui/core/mvc/Controller",
 			var cPanel = this.getView().byId("idDefinitionPane");
 			var cContent = cPanel.getContent();
 			if (sType === "TABLE") {
-				if (!!cContent && cContent.getId() === "idTableDef") {
-					this._cTableDefinition.setTable(sSchemaName, sTableName);
+				if (!!cContent && cContent.getId() === "idTableViewer") {
+					this._cTableViewer.setTable(sSchemaName, sTableName);
 				} else {
-					this._cTableDefinition = new TableDefinition("idTableDef", {height: "100%"} );
-					this._cTableDefinition.setTable(sSchemaName, sTableName);
-					cPanel.setContent(this._cTableDefinition);
+					this._cTableViewer = new TableViewer("idTableViewer", {height: "100%"} );
+					this._cTableViewer.setTable(sSchemaName, sTableName);
+					cPanel.setContent(this._cTableViewer);
 				}
 			} else if (sType === "VIEW") {
-				if (!!cContent && cContent.getId() === "idViewDef") {
-					this._cViewDefinition.setView(sSchemaName, sTableName);
+				if (!!cContent && cContent.getId() === "idViewViewer") {
+					this._cViewViewer.setView(sSchemaName, sTableName);
 				} else {
-					this._cViewDefinition = new ViewDefinition("idViewDef", {height: "100%"} );
-					this._cViewDefinition.setView(sSchemaName, sTableName);
-					cPanel.setContent(this._cViewDefinition);
+					this._cViewViewer = new ViewViewer("idViewViewer", {height: "100%"} );
+					this._cViewViewer.setView(sSchemaName, sTableName);
+					cPanel.setContent(this._cViewViewer);
 				}
 			}
 			

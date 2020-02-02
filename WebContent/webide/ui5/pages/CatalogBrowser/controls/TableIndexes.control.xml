@@ -1,0 +1,73 @@
+<core:FragmentDefinition
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:m="sap.m"
+		xmlns:t="sap.ui.table"
+		xmlns:core="sap.ui.core"
+    >
+
+		<t:Table
+			id="idIndexes"
+			selectionMode="None"
+			visibleRowCountMode="Auto"
+			rows="{
+				path: '/TABLE',
+					sorter: [ {
+								path: 'INDEX_NAME'
+							} ],
+					filters: [  { path: 'SCHEMA_NAME', operator: 'EQ', value1: '' },
+					 			{ path: 'TABLE_NAME', operator: 'EQ', value1: '' }
+							]
+			}"
+			enableBusyIndicator="true"
+			ariaLabelledBy="title">
+			<t:extension>
+				<m:OverflowToolbar>
+					<m:Title text="Indexes"/>
+					<m:ToolbarSpacer/>
+					<m:Button
+						icon="sap-icon://refresh"
+						tooltip="Reinitialize Model"
+						press="onModelRefresh"/>
+				</m:OverflowToolbar>
+			</t:extension>
+			<t:columns>
+				<t:Column
+					sortProperty="INDEX_NAME"
+					filterProperty="INDEX_NAME"
+					autoResizable="true">
+					<m:Label text="Index Name" />
+					<t:template>
+						<m:Text text="{INDEX_NAME}" wrapping="false" />
+					</t:template>
+				</t:Column>
+				<t:Column
+					sortProperty="INDEX_TYPE"
+					filterProperty="INDEX_TYPE"
+					autoResizable="true">
+					<m:Label text="Index Type" />
+					<t:template>
+						<m:Text text="{INDEX_TYPE}" wrapping="false" />
+					</t:template>
+				</t:Column>
+				<t:Column
+					sortProperty="CONSTRAINT"
+					filterProperty="CONSTRAINT"
+					autoResizable="true">
+					<m:Label text="Constraint" />
+					<t:template>
+						<m:Text text="{CONSTRAINT}" wrapping="false" />
+					</t:template>
+				</t:Column>
+				<t:Column
+					sortProperty="CREATE_TIME"
+					filterProperty="CREATE_TIME"
+					autoResizable="true">
+					<m:Label text="Create Time" />
+					<t:template>
+						<m:Text text="{path: 'CREATE_TIME', type: 'sap.ui.model.odata.type.DateTimeOffset' }" wrapping="false" />
+					</t:template>
+				</t:Column>
+			</t:columns>
+		</t:Table>
+
+</core:FragmentDefinition>

@@ -2,7 +2,7 @@ sap.ui.define([ "sap/ui/core/mvc/Controller",
 		"sap/ui/model/odata/v4/ODataModel", "io/rtdi/hana/webide/ui/controls/helperfunctions" ], function(Controller, ODataModel, h) {
 	"use strict";
 
-	return Controller.extend("io.rtdi.hana.webide.ui.ObjectDependencies.Controller", {
+	return Controller.extend("io.rtdi.hana.webide.ui.Controller", {
 
 		onInit : function() {
 		},
@@ -18,7 +18,7 @@ sap.ui.define([ "sap/ui/core/mvc/Controller",
 			var series = chart.series.push(new am4plugins_forceDirected.ForceDirectedSeries())
 
 			var oModel = new sap.ui.model.json.JSONModel();
-			oModel.loadData("http://localhost:8080/hanatest/rest/objectdependencies/" + h.encodeURIfull(sSchemaName) +"/" + h.encodeURIfull(sObjectName), null, false );
+			oModel.loadData("../../rest/objectdependencies/" + h.encodeURIfull(sSchemaName) +"/" + h.encodeURIfull(sObjectName), null, false );
 			
 			var oRawData = oModel.getProperty("/");
 			oRawData.forEach(function(item) {

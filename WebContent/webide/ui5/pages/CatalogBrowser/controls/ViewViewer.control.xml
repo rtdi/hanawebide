@@ -1,0 +1,113 @@
+<core:FragmentDefinition
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns="sap.uxap"
+		xmlns:layout="sap.ui.layout"
+		xmlns:m="sap.m"
+		xmlns:t="sap.ui.table"
+		xmlns:core="sap.ui.core"
+		xmlns:ide="io.rtdi.hana.webide.ui.controls"
+		xmlns:tc="io.rtdi.hana.webide.ui.pages.CatalogBrowser.controls"
+    >
+	<ObjectPageLayout
+		id="idPageHeader"
+		enableLazyLoading="true"
+		useIconTabBar="true"
+		showTitleInHeaderContent="false">
+		<headerTitle>
+			<ObjectPageHeader 
+				objectTitle="{parts : [ '/SCHEMA_NAME', '/TABLE_NAME' ], formatter:'._TableNameFormatter'}"
+				objectSubtitle="{parts : [ '/TABLE_TYPE', '/TEMPORARY_TABLE_TYPE', '/IS_USER_DEFINED_TYPE' ], formatter:'._TableTypeFormatter'}">
+				<actions>
+					<ObjectPageHeaderActionButton icon="sap-icon://pull-down" text="show section" type="Emphasized" tooltip="pull-down"/>
+					<ObjectPageHeaderActionButton icon="sap-icon://show" text="show state" type="Emphasized" tooltip="show"/>
+				</actions>
+			</ObjectPageHeader>
+		</headerTitle>
+
+		<headerContent>
+			<m:Text text="{/COMMENTS}"/>
+
+			<layout:VerticalLayout>
+				<m:Label text="Created" />
+				<m:Text text="{path: '/CREATE_TIME', formatter: '._TimestampFormatter' }" />
+			</layout:VerticalLayout>
+
+			<layout:VerticalLayout>
+				<m:Label text="Logging" />
+				<m:Text text="{/IS_LOGGED}" />
+			</layout:VerticalLayout>
+
+		</headerContent>
+
+		<sections>
+			<ObjectPageSection title="Table Definition">
+				<subSections>
+					<ObjectPageSubSection class="sapUxAPObjectPageSubSectionFitContainer" >
+						<blocks>
+							<tc:TableDefinition id="idTableDef" height="100%" />
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection title="Indexes">
+				<subSections>
+					<ObjectPageSubSection class="sapUxAPObjectPageSubSectionFitContainer" >
+						<blocks>
+							<tc:TableIndexes id="idTableIndexes" height="100%" />
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection title="Triggers">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<layout:HorizontalLayout>
+							</layout:HorizontalLayout>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection title="Runtime Information">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<layout:HorizontalLayout>
+							</layout:HorizontalLayout>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection title="Partitions">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<layout:HorizontalLayout>
+							</layout:HorizontalLayout>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection title="Data Preview">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<layout:HorizontalLayout>
+							</layout:HorizontalLayout>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection title="Object Dependencies">
+				<subSections>
+					<ObjectPageSubSection class="sapUxAPObjectPageSubSectionFitContainer">
+						<blocks>
+							<tc:TableDependencies id="idTableDependencies" height="100%"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+		</sections>
+	</ObjectPageLayout>
+</core:FragmentDefinition>

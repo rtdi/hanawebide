@@ -6,14 +6,14 @@
 		},
 		"dataSources": {
 			"Objects": {
-				"uri": "http://localhost:8080/hanatest/odata/SYS/OBJECTS/",
+				"uri": "../../../../odata/SYS/OBJECTS/",
 				"type": "OData",
 				"settings": {
 					"odataVersion": "4.0"
 				}
 			},
 			"ObjectOwner": {
-				"uri": "http://localhost:8080/hanatest/odata/SYS/SCHEMAS/",
+				"uri": "../../../../odata/SYS/SCHEMAS/",
 				"type": "OData",
 				"settings": {
 					"odataVersion": "4.0"
@@ -23,7 +23,7 @@
 	},
 	"sap.ui5": {
 		"rootView": {
-			"viewName": "io.rtdi.hana.webide.ui.View",
+			"viewName": "io.rtdi.hana.webide.ui.pages.CatalogBrowser.View",
 			"type": "XML",
 			"async": true
 		},

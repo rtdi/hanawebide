@@ -1,6 +1,6 @@
 {
 	"sap.app": {
-		"id": "io.rtdi.hana.webide.ui",
+		"id": "io.rtdi.hana.webide.ui.pages.SQLEditor",
 		"applicationVersion": {
 			"version": "1.0.0"
 		},

@@ -1,19 +1,21 @@
 {
 	"sap.app": {
-		"id": "sap.ui.table.sample.TreeTable.BasicODataTreeBinding",
+		"id": "io.rtdi.hana.webide.ui.pages.ObjectDependencies",
 		"applicationVersion": {
 			"version": "1.0.0"
 		}
 	},
 	"sap.ui5": {
 		"rootView": {
-			"viewName": "sap.ui.table.sample.TreeTable.BasicODataTreeBinding.View",
+			"viewName": "io.rtdi.hana.webide.ui.pages.ObjectDependencies.View",
 			"type": "XML",
 			"async": true
 		},
 		"dependencies": {
 			"libs": {
-				"sap.m": {}
+				"sap.m": {
+					
+				}
 			}
 		},
 		"config": {

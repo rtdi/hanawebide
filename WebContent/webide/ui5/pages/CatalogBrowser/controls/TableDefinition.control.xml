@@ -1,0 +1,96 @@
+<core:FragmentDefinition
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:m="sap.m"
+		xmlns:t="sap.ui.table"
+		xmlns:core="sap.ui.core"
+    >
+
+	<t:Table
+		id="idColumnList"
+		selectionMode="None"
+		visibleRowCountMode="Auto"
+		rows="{
+			path: '/TABLE',
+				sorter: [ {
+							path: 'POSITION'
+						} ],
+				filters: [  { path: 'SCHEMA_NAME', operator: 'EQ', value1: '' },
+				 			{ path: 'TABLE_NAME', operator: 'EQ', value1: '' }
+						]
+		}"
+		enableBusyIndicator="true"
+		ariaLabelledBy="title">
+		<t:extension>
+			<m:OverflowToolbar>
+				<m:Title text="Columns"/>
+				<m:ToolbarSpacer/>
+				<m:Button
+					icon="sap-icon://refresh"
+					tooltip="Reinitialize Model"
+					press="onModelRefresh"/>
+			</m:OverflowToolbar>
+		</t:extension>
+		<t:columns>
+			<t:Column
+				sortProperty="POSITION"
+				filterProperty="POSITION"
+				autoResizable="true"
+				width="4rem">
+				<m:Label text="Pos" />
+				<t:template>
+					<m:Text text="{POSITION}" wrapping="false" />
+				</t:template>
+			</t:Column>
+			<t:Column
+				sortProperty="COLUMN_NAME"
+				filterProperty="COLUMN_NAME"
+				autoResizable="true"
+				width="11rem">
+				<m:Label text="Column Name" />
+				<t:template>
+					<m:Text text="{COLUMN_NAME}" wrapping="false" />
+				</t:template>
+			</t:Column>
+			<t:Column
+				sortProperty="DATA_TYPE_NAME"
+				filterProperty="DATA_TYPE_NAME"
+				autoResizable="true"
+				width="11rem">
+				<m:Label text="Data Type" />
+				<t:template>
+					<m:Text text="{parts: ['DATA_TYPE_NAME', 'LENGTH', 'SCALE' ], formatter:'._DataTypeFormatter' }" wrapping="false" />
+				</t:template>
+			</t:Column>
+			<t:Column
+				sortProperty="IS_NULLABLE"
+				filterProperty="IS_NULLABLE"
+				autoResizable="true"
+				width="4rem">
+				<m:Label text="Nullable" />
+				<t:template>
+					<m:Text text="{IS_NULLABLE}" wrapping="false" />
+				</t:template>
+			</t:Column>
+			<t:Column
+				sortProperty="DEFAULT_VALUE"
+				filterProperty="DEFAULT_VALUE"
+				autoResizable="true"
+				width="5rem">
+				<m:Label text="Default" />
+				<t:template>
+					<m:Text text="{DEFAULT_VALUE}" wrapping="false" />
+				</t:template>
+			</t:Column>
+			<t:Column
+				sortProperty="COMMENTS"
+				filterProperty="COMMENTS"
+				autoResizable="true">
+				<m:Label text="Comments" />
+				<t:template>
+					<m:Text text="{COMMENTS}" wrapping="false" />
+				</t:template>
+			</t:Column>
+		</t:columns>
+	</t:Table>
+
+</core:FragmentDefinition>
