@@ -1,0 +1,112 @@
+<core:FragmentDefinition
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:m="sap.m"
+		xmlns:t="sap.ui.table"
+		xmlns:core="sap.ui.core"
+    >
+
+	<t:Table
+		id="idTriggers"
+		selectionMode="None"
+		visibleRowCountMode="Auto"
+		rows="{
+			path: '/TABLE',
+				sorter: [ {
+							path: 'TRIGGER_NAME'
+						} ],
+				filters: [  { path: 'SUBJECT_TABLE_SCHEMA', operator: 'EQ', value1: '' },
+				 			{ path: 'SUBJECT_TABLE_NAME', operator: 'EQ', value1: '' }
+						]
+		}"
+		enableBusyIndicator="true"
+		ariaLabelledBy="title">
+		<t:extension>
+			<m:OverflowToolbar>
+				<m:Title text="Triggers"/>
+				<m:ToolbarSpacer/>
+				<m:Button
+					icon="sap-icon://refresh"
+					tooltip="Reinitialize Model"
+					press="onModelRefresh"/>
+			</m:OverflowToolbar>
+		</t:extension>
+		<t:columns>
+			<t:Column
+				sortProperty="OWNER_NAME"
+				filterProperty="OWNER_NAME"
+				autoResizable="true">
+				<m:Label text="Owner" />
+				<t:template>
+					<m:Text text="{OWNER_NAME}" wrapping="false" />
+				</t:template>
+			</t:Column>
+			<t:Column
+				sortProperty="TRIGGER_NAME"
+				filterProperty="TRIGGER_NAME"
+				autoResizable="true">
+				<m:Label text="Trigger Name" />
+				<t:template>
+					<m:Text text="{TRIGGER_NAME}" wrapping="false" />
+				</t:template>
+			</t:Column>
+			<t:Column
+				sortProperty="TRIGGER_ACTION_TIME"
+				filterProperty="TRIGGER_ACTION_TIME"
+				autoResizable="true">
+				<m:Label text="Fire" />
+				<t:template>
+					<m:Text text="{TRIGGER_ACTION_TIME}" wrapping="false" />
+				</t:template>
+			</t:Column>
+			<t:Column
+				sortProperty="TRIGGER_EVENT"
+				filterProperty="TRIGGER_EVENT"
+				autoResizable="true"
+				width="5rem">
+				<m:Label text="Fire on" />
+				<t:template>
+					<m:Text text="{TRIGGER_EVENT}" wrapping="false" />
+				</t:template>
+			</t:Column>
+			<t:Column
+				sortProperty="IS_VALID"
+				filterProperty="IS_VALID"
+				autoResizable="true"
+				width="4rem">
+				<m:Label text="Valid?" />
+				<t:template>
+					<m:Text text="{IS_VALID}" wrapping="false" />
+				</t:template>
+			</t:Column>
+			<t:Column
+				sortProperty="IS_ENABLED"
+				filterProperty="IS_ENABLED"
+				autoResizable="true"
+				width="4rem">
+				<m:Label text="Enabled?" />
+				<t:template>
+					<m:Text text="{IS_ENABLED}" wrapping="false" />
+				</t:template>
+			</t:Column>
+			<t:Column
+				sortProperty="DEFINITION"
+				filterProperty="DEFINITION"
+				autoResizable="true">
+				<m:Label text="Code" />
+				<t:template>
+					<m:Text text="{DEFINITION}" wrapping="false" />
+				</t:template>
+			</t:Column>
+			<t:Column
+				sortProperty="CREATE_TIME"
+				filterProperty="CREATE_TIME"
+				autoResizable="true">
+				<m:Label text="Created at" />
+				<t:template>
+					<m:Text text="{path: 'CREATE_TIME', formatter: '._TimestampFormatter' }" wrapping="false" />
+				</t:template>
+			</t:Column>
+		</t:columns>
+	</t:Table>
+
+</core:FragmentDefinition>

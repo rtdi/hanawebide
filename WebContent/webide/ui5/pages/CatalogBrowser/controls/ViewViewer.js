@@ -28,7 +28,6 @@ sap.ui.define(["sap/ui/core/XMLComposite"], function(XMLComposite) {
 
 			var cTableDef = self.byId("idTableDef");
 			cTableDef.setTable(sSchemaName, sTableName);
-
 		},
 		_TimestampFormatter: function(sTimestamp) {
 			if (!!sTimestamp) {

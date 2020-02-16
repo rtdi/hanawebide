@@ -13,7 +13,11 @@ sap.ui.define(["sap/ui/core/XMLComposite", "io/rtdi/hana/webide/ui/controls/help
 		init : function() {
 			self = this;
 		},
-		setObject: function(sSchemaName, sObjectName) {
+		getChart: function() {
+			var cControl = self.byId("idchart");
+			return cControl.getChart();
+		},
+		setChart: function(sSchemaName, sObjectName) {
 			var cControl = self.byId("idchart");
 			cControl.setChart( function(chart) {
 				if (!!chart) {

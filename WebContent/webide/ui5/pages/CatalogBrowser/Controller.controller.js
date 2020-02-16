@@ -41,21 +41,21 @@ sap.ui.define([ "sap/ui/core/mvc/Controller",
 			var cPanel = this.getView().byId("idDefinitionPane");
 			var cContent = cPanel.getContent();
 			if (sType === "TABLE") {
-				if (!!cContent && cContent.getId() === "idTableViewer") {
-					this._cTableViewer.setTable(sSchemaName, sTableName);
-				} else {
+				if (!this._cTableViewer) {
 					this._cTableViewer = new TableViewer("idTableViewer", {height: "100%"} );
-					this._cTableViewer.setTable(sSchemaName, sTableName);
+				}
+				if (!!cContent && cContent.getId() !== "idTableViewer") {
 					cPanel.setContent(this._cTableViewer);
 				}
+				this._cTableViewer.setTable(sSchemaName, sTableName);
 			} else if (sType === "VIEW") {
-				if (!!cContent && cContent.getId() === "idViewViewer") {
-					this._cViewViewer.setView(sSchemaName, sTableName);
-				} else {
+				if (!this._cViewViewer) {
 					this._cViewViewer = new ViewViewer("idViewViewer", {height: "100%"} );
-					this._cViewViewer.setView(sSchemaName, sTableName);
+				}
+				if (!!cContent && cContent.getId() !== "idViewViewer") {
 					cPanel.setContent(this._cViewViewer);
 				}
+				this._cViewViewer.setView(sSchemaName, sTableName);
 			}
 			
 			
