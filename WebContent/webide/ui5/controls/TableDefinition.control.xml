@@ -1,0 +1,251 @@
+<core:FragmentDefinition
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns="sap.uxap"
+		xmlns:layout="sap.ui.layout"
+		xmlns:m="sap.m"
+		xmlns:t="sap.ui.table"
+		xmlns:core="sap.ui.core"
+		xmlns:ide="io.rtdi.hana.webide.ui.controls"
+    >
+	<ObjectPageLayout
+		id="idPageHeader"
+		enableLazyLoading="true"
+		useIconTabBar="true"
+		showTitleInHeaderContent="false">
+		<headerTitle>
+			<ObjectPageHeader 
+				objectTitle="{parts : [ '/SCHEMA_NAME', '/TABLE_NAME' ], formatter:'._TableNameFormatter'}"
+				objectSubtitle="{parts : [ '/TABLE_TYPE', '/TEMPORARY_TABLE_TYPE', '/IS_USER_DEFINED_TYPE' ], formatter:'._TableTypeFormatter'}">
+				<actions>
+					<ObjectPageHeaderActionButton icon="sap-icon://pull-down" text="show section" type="Emphasized" tooltip="pull-down"/>
+					<ObjectPageHeaderActionButton icon="sap-icon://show" text="show state" type="Emphasized" tooltip="show"/>
+				</actions>
+			</ObjectPageHeader>
+		</headerTitle>
+
+		<headerContent>
+			<m:Text text="{/COMMENTS}"/>
+
+			<layout:VerticalLayout>
+				<m:Label text="Created" />
+				<m:Text text="{path: '/CREATE_TIME', formatter: '._TimestampFormatter' }" />
+			</layout:VerticalLayout>
+
+			<layout:VerticalLayout>
+				<m:Label text="Logging" />
+				<m:Text text="{/IS_LOGGED}" />
+			</layout:VerticalLayout>
+
+		</headerContent>
+
+		<sections>
+			<ObjectPageSection title="Table Definition">
+				<subSections>
+					<ObjectPageSubSection class="sapUxAPObjectPageSubSectionFitContainer" >
+						<blocks>
+							<t:Table
+								id="idColumnList"
+								selectionMode="None"
+								visibleRowCountMode="Auto"
+								rows="{
+									path: '/TABLE',
+										sorter: [ {
+													path: 'POSITION'
+												} ],
+										filters: [  { path: 'SCHEMA_NAME', operator: 'EQ', value1: '' },
+										 			{ path: 'TABLE_NAME', operator: 'EQ', value1: '' }
+												]
+								}"
+								enableBusyIndicator="true"
+								ariaLabelledBy="title">
+								<t:extension>
+									<m:OverflowToolbar>
+										<m:Title text="Columns"/>
+										<m:ToolbarSpacer/>
+										<m:Button
+											icon="sap-icon://refresh"
+											tooltip="Reinitialize Model"
+											press="onModelRefresh"/>
+									</m:OverflowToolbar>
+								</t:extension>
+								<t:columns>
+									<t:Column
+										sortProperty="POSITION"
+										filterProperty="POSITION"
+										autoResizable="true"
+										width="4rem">
+										<m:Label text="Pos" />
+										<t:template>
+											<m:Text text="{POSITION}" wrapping="false" />
+										</t:template>
+									</t:Column>
+									<t:Column
+										sortProperty="COLUMN_NAME"
+										filterProperty="COLUMN_NAME"
+										autoResizable="true"
+										width="11rem">
+										<m:Label text="Column Name" />
+										<t:template>
+											<m:Text text="{COLUMN_NAME}" wrapping="false" />
+										</t:template>
+									</t:Column>
+									<t:Column
+										sortProperty="DATA_TYPE_NAME"
+										filterProperty="DATA_TYPE_NAME"
+										autoResizable="true"
+										width="11rem">
+										<m:Label text="Data Type" />
+										<t:template>
+											<m:Text text="{parts: ['DATA_TYPE_NAME', 'LENGTH', 'SCALE' ], formatter:'._DataTypeFormatter' }" wrapping="false" />
+										</t:template>
+									</t:Column>
+									<t:Column
+										sortProperty="IS_NULLABLE"
+										filterProperty="IS_NULLABLE"
+										autoResizable="true"
+										width="4rem">
+										<m:Label text="Nullable" />
+										<t:template>
+											<m:Text text="{IS_NULLABLE}" wrapping="false" />
+										</t:template>
+									</t:Column>
+									<t:Column
+										sortProperty="DEFAULT_VALUE"
+										filterProperty="DEFAULT_VALUE"
+										autoResizable="true"
+										width="5rem">
+										<m:Label text="Default" />
+										<t:template>
+											<m:Text text="{DEFAULT_VALUE}" wrapping="false" />
+										</t:template>
+									</t:Column>
+									<t:Column
+										sortProperty="COMMENTS"
+										filterProperty="COMMENTS"
+										autoResizable="true">
+										<m:Label text="Comments" />
+										<t:template>
+											<m:Text text="{COMMENTS}" wrapping="false" />
+										</t:template>
+									</t:Column>
+								</t:columns>
+							</t:Table>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection title="Indexes">
+				<subSections>
+					<ObjectPageSubSection class="sapUxAPObjectPageSubSectionFitContainer" >
+						<blocks>
+							<t:Table
+								id="idIndexes"
+								selectionMode="None"
+								visibleRowCountMode="Auto"
+								rows="{
+									path: '/TABLE',
+										sorter: [ {
+													path: 'INDEX_NAME'
+												} ],
+										filters: [  { path: 'SCHEMA_NAME', operator: 'EQ', value1: '' },
+										 			{ path: 'TABLE_NAME', operator: 'EQ', value1: '' }
+												]
+								}"
+								enableBusyIndicator="true"
+								ariaLabelledBy="title">
+								<t:extension>
+									<m:OverflowToolbar>
+										<m:Title text="Indexes"/>
+										<m:ToolbarSpacer/>
+										<m:Button
+											icon="sap-icon://refresh"
+											tooltip="Reinitialize Model"
+											press="onModelRefresh"/>
+									</m:OverflowToolbar>
+								</t:extension>
+								<t:columns>
+									<t:Column
+										sortProperty="INDEX_NAME"
+										filterProperty="INDEX_NAME"
+										autoResizable="true">
+										<m:Label text="Index Name" />
+										<t:template>
+											<m:Text text="{INDEX_NAME}" wrapping="false" />
+										</t:template>
+									</t:Column>
+									<t:Column
+										sortProperty="INDEX_TYPE"
+										filterProperty="INDEX_TYPE"
+										autoResizable="true">
+										<m:Label text="Index Type" />
+										<t:template>
+											<m:Text text="{INDEX_TYPE}" wrapping="false" />
+										</t:template>
+									</t:Column>
+									<t:Column
+										sortProperty="CONSTRAINT"
+										filterProperty="CONSTRAINT"
+										autoResizable="true">
+										<m:Label text="Constraint" />
+										<t:template>
+											<m:Text text="{CONSTRAINT}" wrapping="false" />
+										</t:template>
+									</t:Column>
+									<t:Column
+										sortProperty="CREATE_TIME"
+										filterProperty="CREATE_TIME"
+										autoResizable="true">
+										<m:Label text="Create Time" />
+										<t:template>
+											<m:Text text="{path: 'CREATE_TIME', type: 'sap.ui.model.odata.type.DateTimeOffset' }" wrapping="false" />
+										</t:template>
+									</t:Column>
+								</t:columns>
+							</t:Table>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection title="Triggers">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<layout:HorizontalLayout>
+							</layout:HorizontalLayout>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection title="Runtime Information">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<layout:HorizontalLayout>
+							</layout:HorizontalLayout>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection title="Partitions">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<layout:HorizontalLayout>
+							</layout:HorizontalLayout>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection title="Object Dependencies">
+				<subSections>
+					<ObjectPageSubSection class="sapUxAPObjectPageSubSectionFitContainer">
+						<blocks>
+							<ide:ObjectDependencies id="id-object-dependencies" height="100%"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+		</sections>
+	</ObjectPageLayout>
+</core:FragmentDefinition>

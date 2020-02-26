@@ -1,0 +1,137 @@
+<mvc:View height="100%" class="sapUiSizeCompact"
+	controllerName="io.rtdi.hana.webide.ui.Controller"
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns="sap.m" 
+	xmlns:f="sap.f"
+	xmlns:u="sap.ui.unified" 
+	xmlns:l="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form" 
+	xmlns:t="sap.ui.table"
+	xmlns:dnd="sap.ui.core.dnd"
+	xmlns:card="sap.f.cards" 
+	xmlns:core="sap.ui.core"
+	xmlns:ide="io.rtdi.hana.webide.ui.controls">
+	<f:DynamicPage id="dynamicpageid" showFooter="false"
+		fitContent="true">
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:breadcrumbs>
+					<Breadcrumbs
+						links="{path:'state>/breadcrumbs', templateShareable:false}">
+						<links>
+							<Link text="{state>text}" href="{state>link}" />
+						</links>
+					</Breadcrumbs>
+				</f:breadcrumbs>
+				<f:heading>
+					<Title text="{state>/title}" level="H1" />
+				</f:heading>
+				<f:navigationActions>
+					<Link href="./pages/SQLEditor/" text="SQL" target="_blank" />
+					<Button icon="sap-icon://home" press="onPressHomeLink"
+						tooltip="Home Page" />
+					<Button icon="sap-icon://log" press="onPressLogoutLink"
+						tooltip="Logout" />
+				</f:navigationActions>
+				<f:actions>
+					<Button icon="sap-icon://alert"
+						text="{= ${state>/messages}.length }"
+						visible="{= !!${state>/messages} &amp;&amp; ${state>/messages}.length > 0 }"
+						type="Emphasized" press="onGlobalErrorPopoverPress" />
+				</f:actions>
+			</f:DynamicPageTitle>
+		</f:title>
+		<f:header>
+		</f:header>
+		<f:content>
+		
+		
+			<l:ResponsiveSplitter defaultPane="default">
+				<l:PaneContainer>
+					<l:SplitPane requiredParentWidth="400" id="default">
+						<Panel height="100%">
+							<headerToolbar>
+								<OverflowToolbar>
+									<SearchField id="idSearchFilter" liveChange=".onSearch" width="30%" />
+									
+									<Label text="Owner" labelFor="idOwnerFilter">
+										<layoutData>
+											<OverflowToolbarLayoutData group="1" shrinkable="true" />
+										</layoutData>
+									</Label>
+									<Select width="20%" id="idOwnerFilter"
+										items="{
+											path: 'ObjectOwner>/TABLE',
+											sorter: { path: 'SCHEMA_NAME' }
+										}"
+										change=".onOwnerChange" >
+										<core:Item key="{ObjectOwner>SCHEMA_NAME}" text="{ObjectOwner>SCHEMA_NAME}" />
+										<layoutData>
+											<OverflowToolbarLayoutData group="1" shrinkable="true" minWidth="150px"/>
+										</layoutData>
+									</Select>
+
+									<Label text="Type" labelFor="idTypeFilter">
+										<layoutData>
+											<OverflowToolbarLayoutData group="2" shrinkable="true" />
+										</layoutData>
+									</Label>
+									<Select width="20%" id="idTypeFilter" change=".onTypeChange" >
+										<items>
+											<core:Item key="*" text="*" />
+											<core:Item key="TABLE" text="TABLE" />
+											<core:Item key="VIEW" text="VIEW" />
+											<core:Item key="PROCEDURE" text="PROCEDURE" />
+											<core:Item key="FUNCTION" text="FUNCTION" />
+											<core:Item key="SEQUENCE" text="SEQUENCE" />
+											<core:Item key="SYNONYM" text="SYNONYM" />
+											<core:Item key="TASK" text="TASK" />
+										</items>
+										<layoutData>
+											<OverflowToolbarLayoutData group="2" shrinkable="true" minWidth="150px"/>
+										</layoutData>
+									</Select>
+
+								</OverflowToolbar>
+							</headerToolbar>
+							<content>
+								<List id="idList" headerText="Database objects"
+									items= "{path: 'Objects>/TABLE', 
+											sorter: [ {
+														path: 'OBJECT_TYPE',
+														group: true
+													},
+													{
+														path: 'OBJECT_NAME'
+													} ],
+											filters: [  { path: 'OBJECT_NAME', operator: 'EQ', value1: '' }
+													],
+											groupHeaderFactory: '.getGroupHeader' }"
+									mode="SingleSelectMaster"
+									selectionChange=".onObjectSelect" >
+									<items>
+										<StandardListItem 
+												title="{Objects>OBJECT_NAME}" 
+												info="{Objects>OBJECT_TYPE}"
+												>
+											<customData>
+												<core:CustomData key="type" value="{Objects>OBJECT_TYPE}" />
+												<core:CustomData key="schema" value="{Objects>SCHEMA_NAME}" />
+											</customData>
+										</StandardListItem>
+									</items>
+								</List>
+							</content>
+			
+						</Panel>
+					</l:SplitPane>
+					<l:SplitPane id="idDefinitionPane">
+						<Text text="Test" />
+					</l:SplitPane>
+				</l:PaneContainer>
+			</l:ResponsiveSplitter>
+			
+		</f:content>
+	</f:DynamicPage>
+</mvc:View>
+

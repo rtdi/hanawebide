@@ -1,0 +1,52 @@
+<mvc:View height="100%" class="sapUiSizeCompact"
+	controllerName="io.rtdi.hana.webide.ui.ObjectDependencies.Controller"
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns="sap.m" 
+	xmlns:f="sap.f"
+	xmlns:u="sap.ui.unified" 
+	xmlns:l="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form" 
+	xmlns:t="sap.ui.table"
+	xmlns:dnd="sap.ui.core.dnd"
+	xmlns:card="sap.f.cards" 
+	xmlns:core="sap.ui.core"
+	xmlns:ide="io.rtdi.hana.webide.ui.controls">
+	<f:DynamicPage id="dynamicpageid" showFooter="false"
+		fitContent="true">
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:breadcrumbs>
+					<Breadcrumbs
+						links="{path:'state>/breadcrumbs', templateShareable:false}">
+						<links>
+							<Link text="{state>text}" href="{state>link}" />
+						</links>
+					</Breadcrumbs>
+				</f:breadcrumbs>
+				<f:heading>
+					<Title text="{state>/title}" level="H1" />
+				</f:heading>
+				<f:navigationActions>
+					<Button icon="sap-icon://home" press="onPressHomeLink"
+						tooltip="Home Page" />
+					<Button icon="sap-icon://log" press="onPressLogoutLink"
+						tooltip="Logout" />
+				</f:navigationActions>
+				<f:actions>
+					<Button icon="sap-icon://alert"
+						text="{= ${state>/messages}.length }"
+						visible="{= !!${state>/messages} &amp;&amp; ${state>/messages}.length > 0 }"
+						type="Emphasized" press="onGlobalErrorPopoverPress" />
+				</f:actions>
+			</f:DynamicPageTitle>
+		</f:title>
+		<f:header>
+		</f:header>
+		<f:content>
+		
+			<ide:AmChartContainer id="idchart" plugin="plugins/forceDirected.js"/>
+			
+		</f:content>
+	</f:DynamicPage>
+</mvc:View>
+
