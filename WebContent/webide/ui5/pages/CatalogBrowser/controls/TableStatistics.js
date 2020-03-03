@@ -1,6 +1,6 @@
 sap.ui.define(["sap/ui/core/XMLComposite"], function(XMLComposite) {
 	var self;
-	var TableIndexesControl = XMLComposite.extend("io.rtdi.hana.webide.ui.pages.CatalogBrowser.controls.TableIndexes", {
+	var TableStatisticsControl = XMLComposite.extend("io.rtdi.hana.webide.ui.pages.CatalogBrowser.controls.TableStatistics", {
 		metadata: {
 			properties: {
 				schema: "string",
@@ -14,19 +14,21 @@ sap.ui.define(["sap/ui/core/XMLComposite"], function(XMLComposite) {
 			self = this;
 		},
 		setTable: function(sSchemaName, sTableName) {
-			var otable = self.byId("idIndexes");
-			// if (!self.getModel()) {
-				var oColumnModel = new sap.ui.model.odata.v4.ODataModel(
+			var otable = self.byId("idStatistics");
+			var oColumnModel = otable.getModel();
+			// if (!otable.getModel()) {
+				oColumnModel = new sap.ui.model.odata.v4.ODataModel(
 						{
-							"serviceUrl": "../../../../odata/SYS/INDEXES/",
+							"serviceUrl": "../../../../odata/SYS/M_CS_TABLES/",
 							"autoExpandSelect": true,
 							"operationMode": "Server",
 							"groupId": "$direct",
 							"synchronizationMode": "None"
 						}
 				);
-				self.setModel(oColumnModel);
-			//}
+				otable.setModel(oColumnModel);
+			// }
+
 			var aFilters = [];
 			aFilters.push(new sap.ui.model.Filter("SCHEMA_NAME",
 					sap.ui.model.FilterOperator.EQ, sSchemaName));
@@ -37,5 +39,5 @@ sap.ui.define(["sap/ui/core/XMLComposite"], function(XMLComposite) {
 			oBinding.filter(aFilters, "Application");
 		}
 	});
-	return TableIndexesControl;
+	return TableStatisticsControl;
 }, true);

@@ -28,7 +28,18 @@ sap.ui.define(["sap/ui/core/XMLComposite"], function(XMLComposite) {
 
 			var cTableDef = self.byId("idTableDef");
 			cTableDef.setTable(sSchemaName, sTableName);
+			var cTableIndexes = self.byId("idTableIndexes");
+			cTableIndexes.setTable(sSchemaName, sTableName);
 
+			var cTableTriggers = self.byId("idTableTriggers");
+			cTableTriggers.setTable(sSchemaName, sTableName);
+			var cTableStatistics = self.byId("idTableStatistics");
+			cTableStatistics.setTable(sSchemaName, sTableName);
+			// var cTableContent = self.byId("idTableContent");
+			// cTableContent.setTable(sSchemaName, sTableName);
+
+			var cTableDependencies = self.byId("idTableDependencies");
+			cTableDependencies.setTable(sSchemaName, sTableName);
 		},
 		_TimestampFormatter: function(sTimestamp) {
 			if (!!sTimestamp) {

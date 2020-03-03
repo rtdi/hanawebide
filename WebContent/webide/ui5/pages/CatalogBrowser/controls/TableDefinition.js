@@ -14,8 +14,10 @@ sap.ui.define(["sap/ui/core/XMLComposite"], function(XMLComposite) {
 			self = this;
 		},
 		setTable: function(sSchemaName, sTableName) {
-			if (!self.getModel()) {
-				var oColumnModel = new sap.ui.model.odata.v4.ODataModel(
+			var otable = self.byId("idColumnList");
+			var oColumnModel = otable.getModel();
+			// if (!otable.getModel()) {
+				oColumnModel = new sap.ui.model.odata.v4.ODataModel(
 						{
 							"serviceUrl": "../../../../odata/SYS/TABLE_COLUMNS/",
 							"autoExpandSelect": true,
@@ -24,8 +26,8 @@ sap.ui.define(["sap/ui/core/XMLComposite"], function(XMLComposite) {
 							"synchronizationMode": "None"
 						}
 				);
-				self.setModel(oColumnModel);
-			}
+				otable.setModel(oColumnModel);
+			// }
 
 			var aFilters = [];
 			aFilters.push(new sap.ui.model.Filter("SCHEMA_NAME",
@@ -33,10 +35,8 @@ sap.ui.define(["sap/ui/core/XMLComposite"], function(XMLComposite) {
 			aFilters.push(new sap.ui.model.Filter("TABLE_NAME",
 					sap.ui.model.FilterOperator.EQ, sTableName));
 			
-			var oBinding = self.getBinding("rows");
+			var oBinding = otable.getBinding("rows");
 			oBinding.filter(aFilters, "Application");
-
-			cIndexes.getBinding("rows").filter(aFilters, "Application");
 		},
 		_DataTypeFormatter: function(sDataTypeName, iSize, iScale) {
 			switch (sDataTypeName) {

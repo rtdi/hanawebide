@@ -1,0 +1,84 @@
+<core:FragmentDefinition
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:m="sap.m"
+		xmlns:t="sap.ui.table"
+		xmlns:core="sap.ui.core"
+    >
+
+	<t:Table
+		id="idStatistics"
+		selectionMode="None"
+		visibleRowCountMode="Auto"
+		rows="{
+			path: '/TABLE',
+				sorter: [ {
+							path: 'PART_ID'
+						} ],
+				filters: [  { path: 'SCHEMA_NAME', operator: 'EQ', value1: '' },
+				 			{ path: 'TABLE_NAME', operator: 'EQ', value1: '' }
+						]
+		}"
+		enableBusyIndicator="true"
+		ariaLabelledBy="title">
+		<t:extension>
+			<m:OverflowToolbar>
+				<m:Title text="Statistics"/>
+				<m:ToolbarSpacer/>
+				<m:Button
+					icon="sap-icon://refresh"
+					tooltip="Reinitialize Model"
+					press="onModelRefresh"/>
+			</m:OverflowToolbar>
+		</t:extension>
+		<t:columns>
+			<t:Column
+				sortProperty="PART_ID"
+				filterProperty="PART_ID"
+				autoResizable="true"
+				width="4rem">
+				<m:Label text="Partition" />
+				<t:template>
+					<m:Text text="{PART_ID}" wrapping="false" />
+				</t:template>
+			</t:Column>
+			<t:Column
+				sortProperty="MEMORY_SIZE_IN_TOTAL"
+				filterProperty="MEMORY_SIZE_IN_TOTAL"
+				autoResizable="true">
+				<m:Label text="Size [MB]" />
+				<t:template>
+					<m:Text text="{MEMORY_SIZE_IN_TOTAL}" wrapping="false" />
+				</t:template>
+			</t:Column>
+			<t:Column
+				sortProperty="MEMORY_SIZE_IN_MAIN"
+				filterProperty="MEMORY_SIZE_IN_MAIN"
+				autoResizable="true">
+				<m:Label text="Compressed [MB]" />
+				<t:template>
+					<m:Text text="{MEMORY_SIZE_IN_MAIN}" wrapping="false" />
+				</t:template>
+			</t:Column>
+			<t:Column
+				sortProperty="MEMORY_SIZE_IN_DELTA"
+				filterProperty="MEMORY_SIZE_IN_DELTA"
+				autoResizable="true">
+				<m:Label text="Delta" />
+				<t:template>
+					<m:Text text="{MEMORY_SIZE_IN_DELTA}" wrapping="false" />
+				</t:template>
+			</t:Column>
+			<t:Column
+				sortProperty="RECORD_COUNT"
+				filterProperty="RECORD_COUNT"
+				autoResizable="true"
+				width="6rem">
+				<m:Label text="Rows" />
+				<t:template>
+					<m:Text text="{RECORD_COUNT}" wrapping="false" />
+				</t:template>
+			</t:Column>
+		</t:columns>
+	</t:Table>
+
+</core:FragmentDefinition>

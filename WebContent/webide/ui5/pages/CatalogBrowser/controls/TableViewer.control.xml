@@ -51,7 +51,7 @@
 			</ObjectPageSection>
 			<ObjectPageSection title="Indexes">
 				<subSections>
-					<ObjectPageSubSection class="sapUxAPObjectPageSubSectionFitContainer" >
+					<ObjectPageSubSection class="sapUxAPObjectPageSubSectionFitContainer">
 						<blocks>
 							<tc:TableIndexes id="idTableIndexes" height="100%" />
 						</blocks>
@@ -60,40 +60,27 @@
 			</ObjectPageSection>
 			<ObjectPageSection title="Triggers">
 				<subSections>
-					<ObjectPageSubSection>
+					<ObjectPageSubSection class="sapUxAPObjectPageSubSectionFitContainer">
 						<blocks>
-							<layout:HorizontalLayout>
-							</layout:HorizontalLayout>
+							<tc:TableTriggers id="idTableTriggers" height="100%" />
 						</blocks>
 					</ObjectPageSubSection>
 				</subSections>
 			</ObjectPageSection>
 			<ObjectPageSection title="Runtime Information">
 				<subSections>
-					<ObjectPageSubSection>
+					<ObjectPageSubSection class="sapUxAPObjectPageSubSectionFitContainer">
 						<blocks>
-							<layout:HorizontalLayout>
-							</layout:HorizontalLayout>
-						</blocks>
-					</ObjectPageSubSection>
-				</subSections>
-			</ObjectPageSection>
-			<ObjectPageSection title="Partitions">
-				<subSections>
-					<ObjectPageSubSection>
-						<blocks>
-							<layout:HorizontalLayout>
-							</layout:HorizontalLayout>
+							<tc:TableStatistics id="idTableStatistics" height="100%" />
 						</blocks>
 					</ObjectPageSubSection>
 				</subSections>
 			</ObjectPageSection>
 			<ObjectPageSection title="Data Preview">
 				<subSections>
-					<ObjectPageSubSection>
+					<ObjectPageSubSection class="sapUxAPObjectPageSubSectionFitContainer">
 						<blocks>
-							<layout:HorizontalLayout>
-							</layout:HorizontalLayout>
+							<tc:TableContent id="idTableContent" height="100%" />
 						</blocks>
 					</ObjectPageSubSection>
 				</subSections>

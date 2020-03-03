@@ -13,7 +13,7 @@ import io.swagger.v3.jaxrs2.integration.resources.OpenApiResource;
  * Otherwise this class is added to the web.xml.
  *
  */
-@ApplicationPath("rest")
+@ApplicationPath("/protected/rest")
 public class WebIDEApplication extends JerseyApplication {
 	
 	public WebIDEApplication() {

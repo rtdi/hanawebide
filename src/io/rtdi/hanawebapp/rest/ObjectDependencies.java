@@ -99,7 +99,7 @@ public class ObjectDependencies {
 					return Response.ok(nodes.values()).build();
 				}
 			} catch (SQLException e) {
-				throw new HanaSQLException(e, sql, "Executed SQL statement threw an error", 1);
+				throw new HanaSQLException(e, sql, "Executed SQL statement threw an error");
 			}
 		} catch (Exception e) {
 			return Response.status(Status.INTERNAL_SERVER_ERROR).entity(new ErrorMessage(e)).build();

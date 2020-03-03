@@ -1,0 +1,26 @@
+<core:FragmentDefinition
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:m="sap.m"
+		xmlns:t="sap.ui.table"
+		xmlns:core="sap.ui.core"
+    >
+
+	<t:Table
+		id="idTableContent"
+		selectionMode="None"
+		visibleRowCountMode="Auto"
+		enableBusyIndicator="true"
+		ariaLabelledBy="title">
+		<t:extension>
+			<m:OverflowToolbar>
+				<m:Title text="Columns"/>
+				<m:ToolbarSpacer/>
+				<m:Button
+					icon="sap-icon://refresh"
+					tooltip="Reinitialize Model"
+					press="onModelRefresh"/>
+			</m:OverflowToolbar>
+		</t:extension>
+	</t:Table>
+
+</core:FragmentDefinition>
